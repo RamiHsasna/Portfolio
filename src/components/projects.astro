@@ -1,44 +1,43 @@
 ---
-import projectOneImage from "../project-images/Project1.png";
 import projectOneImageTwo from "../project-images/Project1-1.png";
+import projectOneImage from "../project-images/Project1.png";
+import projectThreeImage from "../project-images/project3.png";
 
 interface Project {
   title: string;
   image: string;
   link: string;
-  // preview: string;
+  caseStudy?: string;
   status: string;
 }
 
 const projects: Project[] = [
   {
-    title: "Project One",
-    // image: projectOneImage.src,
-    image : projectOneImageTwo.src,
+    title: "BloodLink",
+    /* image: projectOneImageTwo.src, */
+    image: projectOneImage.src,
     link: "https://github.com/RamiHsasna/BloodLink",
-    // preview: "https://example.com",
-    status: "Finished but not deployed",
+    caseStudy: "/case-studies/bloodlink.pdf",
+    status: "Finished but no deployement",
   },
   {
-    title: "Project Two",
+    title: "EcoSolveIt",
     image: "https://placehold.co/600x400/1a1a1a/ffffff?text=Project+Two",
-    link: "https://github.com",
-    // preview: "https://example.com",
-    status: "On Development",
+    link: "https://github.com/RamiHsasna/EcoSolveit",
+    caseStudy: "/case-studies/ecosolveit.pdf",
+    status: "Finished but no deployement",
   },
   {
-    title: "Project Three",
-    image: "https://placehold.co/600x400/1a1a1a/ffffff?text=Project+Three",
-    link: "https://github.com",
-    // preview: "https://example.com",
-    status: "Contributor",
+    title: "Vehicle Rental Management System",
+    image: projectThreeImage.src,
+    link:"https://gitlab.com/codincloud-erp/odoo-modules/codincloud_locatorr",
+    status: "Finished",
   },
   {
     title: "Project Four",
     image: "https://placehold.co/600x400/1a1a1a/ffffff?text=Project+Four",
     link: "https://github.com",
-    // preview: "https://example.com",
-    status: "Deployed",
+    status: "On Developement",
   },
 ];
 ---
@@ -68,18 +67,37 @@ const projects: Project[] = [
                   class="w-full h-48 md:h-72 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <div class="flex items-center px-3">
-                <div class="flex-grow">
-                  <h4 class="text-2xl font-semibold">{project.title}</h4>
-                  <span class="py-1 text-sm text-[var(--white-icon)]">
-                    {project.status}
-                  </span>
-                </div>
-                <div class="flex gap-2 ml-auto">
+            </a>
+            <div class="flex items-center px-3">
+              <div class="flex-grow">
+                <h4 class="text-2xl font-semibold">{project.title}</h4>
+                <span class="py-1 text-sm text-[var(--white-icon)]">
+                  {project.status}
+                </span>
+              </div>
+              <div class="flex gap-2 ml-auto">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={project.link}
+                  aria-label={`${project.title} on GitHub`}
+                  class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="size-7"
+                  >
+                    <path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z" />
+                  </svg>
+                </a>
+                {project.caseStudy && (
                   <a
                     target="_blank"
-                    href={project.link}
-                    aria-label="GitHub"
+                    rel="noopener noreferrer"
+                    href={project.caseStudy}
+                    aria-label={`${project.title} case study (PDF)`}
                     class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
                   >
                     <svg
@@ -88,36 +106,21 @@ const projects: Project[] = [
                       fill="currentColor"
                       class="size-7"
                     >
-                      <path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z" />
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm1 1.5L18.5 7H15V3.5ZM8 11h2.5a2 2 0 1 1 0 4H9v2H8v-6Zm1 1v2h1.5a1 1 0 1 0 0-2H9Zm4-1h3v1h-2v1.5h1.5v1H14V17h-1v-6Zm4 0h1v6h-1v-6Z" />
                     </svg>
                   </a>
-                <!-- Commented the preview button -->
-                  <!-- <a -->
-                  <!--   target="_blank" -->
-                  <!--   href={project.preview} -->
-                  <!--   aria-label="Preview" -->
-                  <!--   class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]" -->
-                  <!-- > -->
-                  <!--   <svg -->
-                  <!--     xmlns="http://www.w3.org/2000/svg" -->
-                  <!--     viewBox="0 0 24 24" -->
-                  <!--     fill="currentColor" -->
-                  <!--     class="size-7" -->
-                  <!--   > -->
-                  <!--     <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z" /> -->
-                  <!--   </svg> -->
-                  <!-- </a> -->
-                </div>
+                )}
               </div>
-            </a>
+            </div>
           </div>
         ))
       }
     </div>
     <a
       target="_blank"
+      rel="noopener noreferrer"
       href="https://github.com/RamiHsasna"
-      aria-label="GitHub"
+      aria-label="More projects on GitHub"
       class="w-full flex items-center justify-center gap-2 mt-9 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)] hover:scale-105"
     >
       <span class="md:text-lg text-md">More projects on</span>
