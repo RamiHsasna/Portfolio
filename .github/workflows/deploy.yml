@@ -4,7 +4,7 @@ on:
   # Trigger the workflow every time you push to the `main` branch
   # Using a different branch name? Replace `main` with your branch’s name
   push:
-    branches: [main]
+    branches: [master]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
@@ -20,8 +20,24 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v7
-      - name: Install, build, and upload your site
-        uses: withastro/action@v6
+      - name: Setup pages
+        uses: actions/configure-pages@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
         # with:
         # path: . # The root location of your Astro project inside the repository. (optional)
         # node-version: 24 # The specific version of Node that should be used to build your site. Defaults to 24. (optional)
